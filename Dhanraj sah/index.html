@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhanraj Sah - Personal Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Dhanraj Sah</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="particles"></div>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1 class="fade-in">Dhanraj Sah</h1>
+                <p class="tagline fade-in-delay-1">A passionate learner and aspiring professional</p>
+                <p class="subtext fade-in-delay-2">Interested in technology, business, and digital creation.</p>
+                <div class="hero-buttons fade-in-delay-3">
+                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                    <a href="#projects" class="btn btn-secondary">View Projects</a>
+                </div>
+            </div>
+            <div class="hero-image fade-in-delay-2">
+                <div class="profile-photo">
+                    <img src="profile.jpg" alt="Dhanraj Sah" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user-circle\'></i>';">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">👤 About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <blockquote>
+                        "I'm Dhanraj Sah, a motivated learner with strong interests in technology, business, and economics. I enjoy programming (C language), web development, and creating digital projects.
+                        <br><br>
+                        I have passed Grade 11 (Business Stream) with subjects including Computer Science, Accounting, and Economics, and I am currently studying Grade 12 with the same subjects.
+                        <br><br>
+                        I'm also the creator of Silent Voice Nepal, a news and awareness platform. I focus on continuous learning, practical development, and digital innovation."
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">💼 Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card" data-skill="web-dev">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>HTML, CSS, JavaScript</p>
+                    <button class="skill-learn-more">Learn More</button>
+                </div>
+                <div class="skill-card" data-skill="programming">
+                    <div class="skill-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Programming (C Language)</h3>
+                    <p>Core programming concepts</p>
+                    <button class="skill-learn-more">Learn More</button>
+                </div>
+                <div class="skill-card" data-skill="computer-science">
+                    <div class="skill-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3>Computer Science</h3>
+                    <p>Fundamentals & concepts</p>
+                    <button class="skill-learn-more">Learn More</button>
+                </div>
+                <div class="skill-card" data-skill="business">
+                    <div class="skill-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Business & Economics</h3>
+                    <p>Business principles & economics</p>
+                    <button class="skill-learn-more">Learn More</button>
+                </div>
+                <div class="skill-card" data-skill="accounting">
+                    <div class="skill-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Accounting Basics</h3>
+                    <p>Financial accounting</p>
+                    <button class="skill-learn-more">Learn More</button>
+                </div>
+                <div class="skill-card" data-skill="content">
+                    <div class="skill-icon">
+                        <i class="fas fa-pen-fancy"></i>
+                    </div>
+                    <h3>Content Creation</h3>
+                    <p>Digital content & media</p>
+                    <button class="skill-learn-more">Learn More</button>
+                </div>
+                <div class="skill-card" data-skill="communication">
+                    <div class="skill-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Communication & Teamwork</h3>
+                    <p>Collaboration & leadership</p>
+                    <button class="skill-learn-more">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skill Modal -->
+    <div id="skillModal" class="skill-modal">
+        <div class="skill-modal-content">
+            <button class="skill-modal-close">&times;</button>
+            <div class="skill-modal-header">
+                <div class="skill-modal-icon" id="modalIcon"></div>
+                <h2 id="modalTitle">Skill Title</h2>
+            </div>
+            <div class="skill-modal-body">
+                <p id="modalDescription">Skill description goes here.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <h2 class="section-title">🎓 Education</h2>
+            <div class="education-timeline">
+                <div class="education-item">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="education-content">
+                        <h3>Grade 12 (Ongoing)</h3>
+                        <p class="education-stream">Business Stream</p>
+                        <p class="education-subjects"><strong>Subjects:</strong> Computer Science, Accounting, Economics, and others</p>
+                        <span class="education-status">In Progress</span>
+                    </div>
+                </div>
+                <div class="education-item">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="education-content">
+                        <h3>Grade 11 (Passed)</h3>
+                        <p class="education-stream">Business Stream</p>
+                        <p class="education-subjects"><strong>Subjects:</strong> Computer Science, Accounting, Economics</p>
+                        <span class="education-status completed">Completed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">🚀 Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3>Silent Voice Nepal</h3>
+                    <p>A digital platform I created to share news, educational content, and social awareness material. It is designed to inform and engage the community by providing accurate, useful, and thought-provoking content.</p>
+                    <div class="project-tags">
+                        <span class="tag">News Platform</span>
+                        <span class="tag">Social Awareness</span>
+                    </div>
+                    <a href="https://www.facebook.com/silentvoicenepal" target="_blank" class="project-link">
+                        <i class="fab fa-facebook"></i> Visit Page
+                    </a>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Calculation Website</h3>
+                    <p>A website that provides easy-to-use online calculators for a variety of tasks. This project helped me improve my web development and problem-solving skills by integrating user-friendly features with practical functionality.</p>
+                    <div class="project-tags">
+                        <span class="tag">Web Tool</span>
+                        <span class="tag">Utility</span>
+                    </div>
+                    <a href="http://calculation.free.nf" target="_blank" class="project-link">
+                        <i class="fas fa-external-link-alt"></i> Visit Site
+                    </a>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Personal Portfolio Website</h3>
+                    <p>A professional personal portfolio website to showcase my projects, skills, education, and contact details. This project reflects my ability to create a cohesive and professional online presence.</p>
+                    <div class="project-tags">
+                        <span class="tag">Portfolio</span>
+                        <span class="tag">Web Development</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">📞 Contact</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-details">
+                        <a href="mailto:dhanrajsah03@gmail.com" class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>dhanrajsah03@gmail.com</span>
+                        </a>
+                        <a href="tel:+9779769738591" class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+977 9769738591</span>
+                        </a>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/1H3GniX25U/" target="_blank" class="social-link facebook" title="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/dhanraj.sah00?igsh=MTlxY2Rlc3M3ZTgzbw==" target="_blank" class="social-link instagram" title="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://x.com/dhanrajsah03" target="_blank" class="social-link twitter" title="X (Twitter)">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" width="20" height="20">
+                                <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/dhanrajsah" target="_blank" class="social-link linkedin" title="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <h3>Send a Message</h3>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Your Email" required autocomplete="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Dhanraj Sah | All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
