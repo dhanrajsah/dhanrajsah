@@ -1022,6 +1022,7 @@ section::before {
     background: radial-gradient(circle, rgba(139, 92, 246, 0.08), transparent);
     border-radius: 50%;
     animation: pulse 10s ease-in-out infinite;
+    z-index: -1;
 }
 
 .contact-content {
