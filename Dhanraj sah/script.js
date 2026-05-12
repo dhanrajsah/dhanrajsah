@@ -102,43 +102,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Contact Form Submission
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
-        
-        // Create mailto link with formatted message
-        const subject = encodeURIComponent(`Portfolio Contact: Message from ${name}`);
-        const body = encodeURIComponent(
-            `Name: ${name}\n` +
-            `Email: ${email}\n` +
-            `
-Message:
-${message}
-
-` +
-            `---\n` +
-            `This message was sent from your portfolio contact form.`
-        );
-        
-        const mailtoLink = `mailto:dhanrajsah03@gmail.com?subject=${subject}&body=${body}`;
-        
-        // Open email client
-        window.location.href = mailtoLink;
-        
-        // Show success message
-        alert('Thank you for your message! Your email client will open to send the message.');
-        
-        // Reset form
-        contactForm.reset();
-    });
-}
-
 // Scroll Animation for sections
 const observerOptions = {
     threshold: 0.1,

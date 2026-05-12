@@ -1235,9 +1235,29 @@ section::before {
     min-height: 120px;
 }
 
-.contact-form button {
+.contact-form button,
+#submitBtn {
     width: 100%;
     font-size: 1.1rem;
+    padding: 14px 22px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+#submitBtn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+}
+
+#submitBtn:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
 }
 
 /* Footer */
