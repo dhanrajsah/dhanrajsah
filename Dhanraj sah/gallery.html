@@ -5,24 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dhanraj Sah | Gallery</title>
     <meta name="description" content="Photo gallery for Dhanraj Sah featuring professional imagery and visual storytelling.">
-    <meta name="keywords" content="Dhanraj Sah gallery, Dhanraj Sah photos, Dhanraj Sah images, portfolio gallery">
+    <meta name="keywords" content="Dhanraj Sah gallery, Dhanraj Sah photos, portfolio gallery">
     <meta property="og:title" content="Dhanraj Sah | Gallery">
     <meta property="og:description" content="Explore a responsive photo gallery showcasing Dhanraj Sah.">
     <meta property="og:url" content="https://dhanrajsah.com.np/gallery.html">
     <meta property="og:type" content="website">
+    <meta name="theme-color" content="#030303">
     <link rel="icon" href="logo.jpg.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="loader">
-        <div class="loader-spinner"></div>
-    </div>
+    <canvas id="glCanvas" aria-hidden="true"></canvas>
+    <div class="gc-dot" id="gcDot" aria-hidden="true"></div>
+    <div class="gc-ring" id="gcRing" aria-hidden="true"><span class="gc-label" id="gcLabel"></span></div>
+    <div class="preloader" id="preloader"><div class="pl-inner"><div class="pl-ring"></div><span class="pl-text">Loading Gallery</span></div></div>
 
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">Dhanraj Sah</div>
-            <ul class="nav-menu">
+    <nav class="navbar" id="navbar">
+        <div class="container nav-wrap">
+            <a class="nav-brand" href="index.html#home"><span class="nb-text">Dhanraj Sah</span></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html#home" class="nav-link">Home</a></li>
                 <li><a href="index.html#about" class="nav-link">About</a></li>
                 <li><a href="index.html#skills" class="nav-link">Skills</a></li>
@@ -31,80 +37,61 @@
                 <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
                 <li><a href="index.html#contact" class="nav-link">Contact</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="particles"></div>
-        <div class="hero-overlay"></div>
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h1 class="fade-in">Photo Gallery</h1>
-                <p class="tagline fade-in-delay-1">Visual storytelling from the work and journey of Dhanraj Sah.</p>
-                <p class="subtext fade-in-delay-2">A responsive collection of images with SEO-friendly alt text for improved discoverability.</p>
-                <div class="hero-buttons fade-in-delay-3">
-                    <a href="index.html#projects" class="btn btn-primary">View Projects</a>
-                    <a href="index.html#contact" class="btn btn-secondary">Contact Me</a>
+    <main>
+        <section class="hero gallery-hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <div class="hero-eyebrow" data-anim="fade"><span class="badge"><i class="fa-solid fa-images"></i> Visual Archive</span></div>
+                    <h1 class="hero-title"><span class="split-line" data-anim="chars">Photo</span><span class="split-line title-gradient" data-anim="chars">Gallery</span></h1>
+                    <p class="hero-lead" data-anim="fade">Visual storytelling from the work and journey of Dhanraj Sah. A responsive collection of images with SEO-friendly alt text for improved discoverability.</p>
+                    <div class="hero-cta" data-anim="fade">
+                        <a href="index.html#projects" class="btn btn-primary mag-btn"><span>View Projects</span><i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="index.html#contact" class="btn btn-ghost mag-btn"><span>Contact Me</span></a>
+                    </div>
+                </div>
+                <aside class="hero-visual" data-anim="fade">
+                    <div class="glass-card profile-card mag-card">
+                        <div class="orbit-wrap orbit-sm">
+                            <div class="orbit o1"></div><div class="orbit o2"></div>
+                            <div class="orbit-dot od1"></div><div class="orbit-dot od2"></div>
+                            <div class="profile-glow"></div>
+                            <div class="profile-displace-wrap" data-displace="profile">
+                                <img src="profile.jpg" alt="Dhanraj Sah" class="profile-img">
+                                <canvas class="displace-canvas" aria-hidden="true"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="sec gallery-sec">
+            <div class="container">
+                <h2 class="sec-heading text-center" data-anim="chars" style="margin-bottom:3rem;"><i class="fa-solid fa-camera-retro"></i> Captured Moments</h2>
+                <div class="gallery-grid">
+                    <article class="glass-card gal-item mag-card" data-anim="fade" data-cursor-text="View"><div class="displace-wrap" data-displace="gallery"><img src="photo1.jpg.jpeg" alt="Dhanraj Sah receiving second position award for presentation at Arihant Multi-fiber Ltd" loading="lazy"><canvas class="displace-canvas" aria-hidden="true"></canvas></div></article>
+                    <article class="glass-card gal-item mag-card" data-anim="fade" data-cursor-text="View"><div class="displace-wrap" data-displace="gallery"><img src="photo2.jpg.jpeg" alt="Dhanraj Sah receiving a token of love from Greenland College" loading="lazy"><canvas class="displace-canvas" aria-hidden="true"></canvas></div></article>
+                    <article class="glass-card gal-item mag-card" data-anim="fade" data-cursor-text="View"><div class="displace-wrap" data-displace="gallery"><img src="photo3.jpg.jpeg" alt="Dhanraj Sah learning digital marketing" loading="lazy"><canvas class="displace-canvas" aria-hidden="true"></canvas></div></article>
+                    <article class="glass-card gal-item mag-card" data-anim="fade" data-cursor-text="View"><div class="displace-wrap" data-displace="gallery"><img src="photo4.jpg.jpeg" alt="Dhanraj Sah on an educational tour at Arihant Multi-fiber Ltd" loading="lazy"><canvas class="displace-canvas" aria-hidden="true"></canvas></div></article>
+                    <article class="glass-card gal-item mag-card" data-anim="fade" data-cursor-text="View"><div class="displace-wrap" data-displace="gallery"><img src="photo5.jpg.jpeg" alt="Dhanraj Sah studying +2 Management at Greenland College" loading="lazy"><canvas class="displace-canvas" aria-hidden="true"></canvas></div></article>
+                    <article class="glass-card gal-item mag-card" data-anim="fade" data-cursor-text="View"><div class="displace-wrap" data-displace="gallery"><img src="photo6.jpg.jpeg" alt="Dhanraj Sah during his +2 studies" loading="lazy"><canvas class="displace-canvas" aria-hidden="true"></canvas></div></article>
+                    <article class="glass-card gal-item mag-card" data-anim="fade" data-cursor-text="View"><div class="displace-wrap" data-displace="gallery"><img src="photo7.jpg.jpeg" alt="Dhanraj Sah visiting a temple during a tour" loading="lazy"><canvas class="displace-canvas" aria-hidden="true"></canvas></div></article>
+                    <article class="glass-card gal-item mag-card" data-anim="fade" data-cursor-text="View"><div class="displace-wrap" data-displace="gallery"><img src="photo8.jpg.jpeg" alt="Dhanraj Sah at his +2 college farewell program" loading="lazy"><canvas class="displace-canvas" aria-hidden="true"></canvas></div></article>
+                    <article class="glass-card gal-item mag-card" data-anim="fade" data-cursor-text="View"><div class="displace-wrap" data-displace="gallery"><img src="photo9.jpg.jpeg" alt="Dhanraj Sah celebrating farewell with friends at college" loading="lazy"><canvas class="displace-canvas" aria-hidden="true"></canvas></div></article>
                 </div>
             </div>
-            <div class="hero-image fade-in-delay-2">
-                <div class="profile-photo">
-                    <img src="profile.jpg" alt="Dhanraj Sah" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user-circle\'></i>';">
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <section class="gallery-section">
-        <div class="container">
-            <h2 class="section-title">📸 Photo Gallery</h2>
-            <div class="gallery-grid">
-                <article class="gallery-card">
-                    <img src="photo1.jpg.jpeg" alt="Dhanraj Sah receiving second position award for presentation at Arihant Multi-fiber Ltd" loading="lazy">
-                </article>
-                <article class="gallery-card">
-                    <img src="photo2.jpg.jpeg" alt="Dhanraj Sah receiving a token of love from Greenland College" loading="lazy">
-                </article>
-                <article class="gallery-card">
-                    <img src="photo3.jpg.jpeg" alt="Dhanraj Sah learning digital marketing" loading="lazy">
-                </article>
-                <article class="gallery-card">
-                    <img src="photo4.jpg.jpeg" alt="Dhanraj Sah on an educational tour at Arihant Multi-fiber Ltd" loading="lazy">
-                </article>
-                <article class="gallery-card">
-                    <img src="photo5.jpg.jpeg" alt="Dhanraj Sah studying +2 Management at Greenland College" loading="lazy">
-                </article>
-                <article class="gallery-card">
-                    <img src="photo6.jpg.jpeg" alt="Dhanraj Sah during his +2 studies" loading="lazy">
-                </article>
-                <article class="gallery-card">
-                    <img src="photo7.jpg.jpeg" alt="Dhanraj Sah visiting a temple during a tour" loading="lazy">
-                </article>
-                <article class="gallery-card">
-                    <img src="photo8.jpg.jpeg" alt="Dhanraj Sah at his +2 college farewell program" loading="lazy">
-                </article>
-                <article class="gallery-card">
-                    <img src="photo9.jpg.jpeg" alt="Dhanraj Sah celebrating farewell with friends at college" loading="lazy">
-                </article>
-            </div>
-        </div>
-    </section>
+    <footer class="footer"><div class="container"><p>&copy; 2026 Dhanraj Sah | All Rights Reserved.</p></div></footer>
+    <button id="backToTop" class="btt mag-btn" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Dhanraj Sah | All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <button id="backToTop" class="back-to-top" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
