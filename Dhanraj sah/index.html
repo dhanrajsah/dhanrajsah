@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,18 +11,23 @@
     <meta property="og:description" content="Welcome to the official portfolio of Dhanraj Sah.">
     <meta property="og:url" content="https://dhanrajsah.com.np">
     <meta property="og:type" content="website">
-    <meta name="theme-color" content="#030303">
+    <meta name="theme-color" content="#030305">
     <link rel="icon" href="logo.jpg.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <canvas id="glCanvas" aria-hidden="true"></canvas>
+    <!-- Hardware-Accelerated 3D WebGL Background Canvas -->
+    <canvas id="webgl3dCanvas" aria-hidden="true"></canvas>
+
+    <!-- GPU Ghost Cursor -->
     <div class="gc-dot" id="gcDot" aria-hidden="true"></div>
     <div class="gc-ring" id="gcRing" aria-hidden="true"><span class="gc-label" id="gcLabel"></span></div>
+
+    <!-- Preloader -->
     <div class="preloader" id="preloader"><div class="pl-inner"><div class="pl-ring"></div><span class="pl-text">Initializing</span></div></div>
 
     <nav class="navbar" id="navbar">
@@ -44,48 +49,48 @@
     </nav>
 
     <main>
+        <!-- HERO -->
         <section id="home" class="hero">
             <div class="container hero-grid">
                 <div class="hero-copy">
-                    <div class="hero-eyebrow" data-anim="fade"><span class="badge"><i class="fa-solid fa-sparkles"></i> Portfolio of a Digital Creator</span></div>
-                    <h1 class="hero-title">
-                        <span class="split-line" data-anim="chars">Dhanraj</span>
-                        <span class="split-line title-gradient" data-anim="chars">Sah</span>
+                    <div class="hero-eyebrow fade-in"><span class="badge"><i class="fa-solid fa-sparkles"></i> Portfolio of a Digital Creator</span></div>
+                    <h1 class="hero-title fade-in">
+                        <span>Dhanraj</span>
+                        <span class="title-gradient">Sah</span>
                     </h1>
-                    <p class="hero-lead" data-anim="fade">A passionate learner and aspiring professional interested in technology, business, and digital creation.</p>
-                    <div class="hero-cta" data-anim="fade">
-                        <a href="#contact" class="btn btn-primary mag-btn"><span>Get In Touch</span><i class="fa-solid fa-arrow-right"></i></a>
-                        <a href="#projects" class="btn btn-ghost mag-btn"><span>View Projects</span></a>
+                    <p class="hero-lead fade-in">A passionate learner and aspiring professional interested in technology, business, and digital creation.</p>
+                    <div class="hero-cta fade-in">
+                        <a href="#contact" class="btn btn-primary"><span>Get In Touch</span><i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="#projects" class="btn btn-ghost"><span>View Projects</span></a>
                     </div>
-                    <div class="hero-stats" data-anim="fade">
-                        <div class="glass-card stat-card mag-card"><i class="fa-solid fa-earth-asia si"></i><div><strong>Social Impact</strong><span>Founder of Silent Voice Nepal</span></div></div>
-                        <div class="glass-card stat-card mag-card"><i class="fa-solid fa-layer-group si"></i><div><strong>Utility Products</strong><span>NEB GPA Calculator &amp; calculator suite</span></div></div>
+                    <div class="hero-stats fade-in">
+                        <div class="glass-card stat-card"><i class="fa-solid fa-earth-asia si"></i><div><strong>Social Impact</strong><span>Founder of Silent Voice Nepal</span></div></div>
+                        <div class="glass-card stat-card"><i class="fa-solid fa-layer-group si"></i><div><strong>Utility Products</strong><span>NEB GPA Calculator &amp; calculator suite</span></div></div>
                     </div>
                 </div>
-                <aside class="hero-visual" data-anim="fade">
-                    <div class="glass-card profile-card mag-card">
+                <aside class="hero-visual fade-in">
+                    <div class="glass-card profile-card">
                         <div class="orbit-wrap">
-                            <div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit o3"></div>
-                            <div class="orbit-dot od1"></div><div class="orbit-dot od2"></div><div class="orbit-dot od3"></div>
-                            <div class="profile-glow"></div>
-                            <div class="profile-displace-wrap" data-displace="profile">
+                            <div class="orbit-ring r1"></div>
+                            <div class="orbit-ring r2"></div>
+                            <div class="profile-img-wrap">
                                 <img src="profile.jpg" alt="Dhanraj Sah" class="profile-img">
-                                <canvas class="displace-canvas" aria-hidden="true"></canvas>
                             </div>
                         </div>
                         <p class="profile-tag">Building elegant digital experiences with polished UI systems, strong strategy, and a deep focus on modern interaction design.</p>
                     </div>
                 </aside>
             </div>
-            <div class="scroll-cue" data-anim="fade"><span>Scroll to explore</span><div class="scroll-bar"></div></div>
+            <div class="scroll-cue fade-in"><span>Scroll to explore</span><div class="scroll-bar"></div></div>
         </section>
 
+        <!-- ABOUT -->
         <section id="about" class="sec">
             <div class="container">
                 <div class="bento bento-about">
-                    <article class="glass-card bento-item span2 mag-card" data-anim="fade">
+                    <article class="glass-card bento-item span2 fade-in">
                         <span class="sec-badge"><i class="fa-solid fa-user-astronaut"></i> About</span>
-                        <h2 class="sec-heading" data-anim="chars">Professional web developer, tech enthusiast and creator.</h2>
+                        <h2 class="sec-heading">Professional web developer, tech enthusiast and creator.</h2>
                         <div class="about-body">
                             <p>I am Dhanraj Sah, a professional web developer, tech enthusiast, and the founder of Silent Voice Nepal. I specialize in building innovative digital solutions by integrating technology, business, and economics. Driven by a passion for digital innovation, I focus on transforming creative ideas into impactful real-world projects that solve practical problems.</p>
                             <p>Currently pursuing my Grade 12 in the Business stream with a core focus on Computer Science, Accounting, and Economics, I bridge the gap between academic knowledge and real-world application. I have built a strong foundation in programming languages like C and modern web development technologies. This unique combination of business acumen and technical skills allows me to approach development from a strategic perspective.</p>
@@ -93,11 +98,11 @@
                         </div>
                     </article>
                     <div class="bento-col">
-                        <div class="glass-card bento-item mag-card" data-anim="fade">
+                        <div class="glass-card bento-item fade-in">
                             <h3><i class="fa-solid fa-bolt"></i> Core Strengths</h3>
                             <ul class="cl"><li><i class="fa-solid fa-circle-check"></i> Web development with modern UI and interaction systems</li><li><i class="fa-solid fa-circle-check"></i> Business-driven digital strategy</li><li><i class="fa-solid fa-circle-check"></i> Technology education and social awareness</li></ul>
                         </div>
-                        <div class="glass-card bento-item mag-card" data-anim="fade">
+                        <div class="glass-card bento-item fade-in">
                             <h3><i class="fa-solid fa-fingerprint"></i> Creative Footprint</h3>
                             <ul class="cl"><li><i class="fa-solid fa-circle-check"></i> Responsive product design</li><li><i class="fa-solid fa-circle-check"></i> Educational calculators &amp; utilities</li><li><i class="fa-solid fa-circle-check"></i> Community-focused content platforms</li></ul>
                         </div>
@@ -106,47 +111,50 @@
             </div>
         </section>
 
+        <!-- SKILLS -->
         <section id="skills" class="sec">
             <div class="container">
-                <div class="glass-card bento-item sec-intro mag-card" data-anim="fade">
+                <div class="glass-card bento-item sec-intro fade-in">
                     <span class="sec-badge"><i class="fa-solid fa-code-branch"></i> Skills</span>
-                    <h2 class="sec-heading" data-anim="chars">Technical ability meets business sense.</h2>
+                    <h2 class="sec-heading">Technical ability meets business sense.</h2>
                     <p>Focused on web development, programming, computer science fundamentals, business knowledge, accounting basics, content creation, and strong teamwork.</p>
                 </div>
                 <div class="bento bento-skills">
-                    <article class="glass-card skill-card mag-card" data-anim="fade" data-skill="web-dev"><div class="sk-icon"><i class="fa-solid fa-code"></i></div><h3>Web Development</h3><p>HTML, CSS, JavaScript</p><button type="button" class="sk-btn mag-btn">Learn More <i class="fa-solid fa-arrow-right"></i></button></article>
-                    <article class="glass-card skill-card mag-card" data-anim="fade" data-skill="programming"><div class="sk-icon"><i class="fa-solid fa-laptop-code"></i></div><h3>Programming (C Language)</h3><p>Core programming concepts</p><button type="button" class="sk-btn mag-btn">Learn More <i class="fa-solid fa-arrow-right"></i></button></article>
-                    <article class="glass-card skill-card mag-card" data-anim="fade" data-skill="computer-science"><div class="sk-icon"><i class="fa-solid fa-microchip"></i></div><h3>Computer Science</h3><p>Fundamentals &amp; concepts</p><button type="button" class="sk-btn mag-btn">Learn More <i class="fa-solid fa-arrow-right"></i></button></article>
-                    <article class="glass-card skill-card mag-card" data-anim="fade" data-skill="business"><div class="sk-icon"><i class="fa-solid fa-chart-line"></i></div><h3>Business &amp; Economics</h3><p>Business principles &amp; economics</p><button type="button" class="sk-btn mag-btn">Learn More <i class="fa-solid fa-arrow-right"></i></button></article>
-                    <article class="glass-card skill-card mag-card" data-anim="fade" data-skill="accounting"><div class="sk-icon"><i class="fa-solid fa-calculator"></i></div><h3>Accounting Basics</h3><p>Financial accounting</p><button type="button" class="sk-btn mag-btn">Learn More <i class="fa-solid fa-arrow-right"></i></button></article>
-                    <article class="glass-card skill-card mag-card" data-anim="fade" data-skill="content"><div class="sk-icon"><i class="fa-solid fa-pen-nib"></i></div><h3>Content Creation</h3><p>Digital content &amp; media</p><button type="button" class="sk-btn mag-btn">Learn More <i class="fa-solid fa-arrow-right"></i></button></article>
-                    <article class="glass-card skill-card mag-card" data-anim="fade" data-skill="communication"><div class="sk-icon"><i class="fa-solid fa-people-group"></i></div><h3>Communication &amp; Teamwork</h3><p>Collaboration &amp; leadership</p><button type="button" class="sk-btn mag-btn">Learn More <i class="fa-solid fa-arrow-right"></i></button></article>
+                    <article class="glass-card skill-card fade-in" data-skill="web-dev"><div class="sk-icon"><i class="fa-solid fa-code"></i></div><h3>Web Development</h3><p>HTML, CSS, JavaScript</p><button type="button" class="sk-btn">Learn More <i class="fa-solid fa-arrow-right"></i></button></article>
+                    <article class="glass-card skill-card fade-in" data-skill="programming"><div class="sk-icon"><i class="fa-solid fa-laptop-code"></i></div><h3>Programming (C Language)</h3><p>Core programming concepts</p><button type="button" class="sk-btn">Learn More <i class="fa-solid fa-arrow-right"></i></button></article>
+                    <article class="glass-card skill-card fade-in" data-skill="computer-science"><div class="sk-icon"><i class="fa-solid fa-microchip"></i></div><h3>Computer Science</h3><p>Fundamentals &amp; concepts</p><button type="button" class="sk-btn">Learn More <i class="fa-solid fa-arrow-right"></i></button></article>
+                    <article class="glass-card skill-card fade-in" data-skill="business"><div class="sk-icon"><i class="fa-solid fa-chart-line"></i></div><h3>Business &amp; Economics</h3><p>Business principles &amp; economics</p><button type="button" class="sk-btn">Learn More <i class="fa-solid fa-arrow-right"></i></button></article>
+                    <article class="glass-card skill-card fade-in" data-skill="accounting"><div class="sk-icon"><i class="fa-solid fa-calculator"></i></div><h3>Accounting Basics</h3><p>Financial accounting</p><button type="button" class="sk-btn">Learn More <i class="fa-solid fa-arrow-right"></i></button></article>
+                    <article class="glass-card skill-card fade-in" data-skill="content"><div class="sk-icon"><i class="fa-solid fa-pen-nib"></i></div><h3>Content Creation</h3><p>Digital content &amp; media</p><button type="button" class="sk-btn">Learn More <i class="fa-solid fa-arrow-right"></i></button></article>
+                    <article class="glass-card skill-card fade-in" data-skill="communication"><div class="sk-icon"><i class="fa-solid fa-people-group"></i></div><h3>Communication &amp; Teamwork</h3><p>Collaboration &amp; leadership</p><button type="button" class="sk-btn">Learn More <i class="fa-solid fa-arrow-right"></i></button></article>
                 </div>
             </div>
         </section>
 
+        <!-- SKILL MODAL -->
         <div class="modal-overlay" id="skillModal" aria-hidden="true">
             <div class="modal-card glass-card" role="dialog" aria-modal="true" aria-labelledby="mTitle">
-                <button class="modal-x mag-btn" aria-label="Close">&times;</button>
+                <button class="modal-x" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
                 <div class="modal-head"><div class="modal-ico" id="mIcon"></div><h2 id="mTitle"></h2></div>
                 <div class="modal-body"><p id="mDesc"></p></div>
             </div>
         </div>
 
+        <!-- EDUCATION -->
         <section id="education" class="sec">
             <div class="container">
                 <div class="bento bento-edu">
-                    <div class="glass-card bento-item sec-intro mag-card" data-anim="fade">
+                    <div class="glass-card bento-item sec-intro fade-in">
                         <span class="sec-badge"><i class="fa-solid fa-graduation-cap"></i> Education</span>
-                        <h2 class="sec-heading" data-anim="chars">Academic progression in business and technology.</h2>
+                        <h2 class="sec-heading">Academic progression in business and technology.</h2>
                         <p>Grade 12 is in progress with a strong focus on Computer Science, Accounting, and Economics, supported by a solid Grade 11 foundation.</p>
                     </div>
                     <div class="bento-col">
-                        <article class="glass-card edu-card mag-card" data-anim="fade">
+                        <article class="glass-card edu-card fade-in">
                             <div class="edu-ico"><i class="fa-solid fa-book-open-reader"></i></div>
                             <div><h3>Completed Class 12 with 86.25%</h3><p class="edu-sub">Business Stream</p><p><strong>Subjects:</strong> Computer Science, Accounting, Economics, and others</p><span class="edu-tag prog"><i class="fa-solid fa-spinner fa-spin-pulse"></i> In Progress</span></div>
                         </article>
-                        <article class="glass-card edu-card mag-card" data-anim="fade">
+                        <article class="glass-card edu-card fade-in">
                             <div class="edu-ico"><i class="fa-solid fa-award"></i></div>
                             <div><h3>Grade 11 (Passed)</h3><p class="edu-sub">Business Stream</p><p><strong>Subjects:</strong> Computer Science, Accounting, Economics</p><span class="edu-tag done"><i class="fa-solid fa-check"></i> Completed</span></div>
                         </article>
@@ -155,73 +163,76 @@
             </div>
         </section>
 
+        <!-- PROJECTS -->
         <section id="projects" class="sec">
             <div class="container">
-                <div class="glass-card bento-item sec-intro mag-card" data-anim="fade">
+                <div class="glass-card bento-item sec-intro fade-in">
                     <span class="sec-badge"><i class="fa-solid fa-rocket"></i> Projects</span>
-                    <h2 class="sec-heading" data-anim="chars">Web products built for utility and awareness.</h2>
+                    <h2 class="sec-heading">Web products built for utility and awareness.</h2>
                     <p>Featured launches and online tools created to solve real user needs, empower students, and strengthen digital communication.</p>
                 </div>
                 <div class="bento bento-proj">
-                    <article class="glass-card proj-card mag-card" data-anim="fade">
+                    <article class="glass-card proj-card fade-in">
                         <div class="proj-ico"><i class="fa-regular fa-newspaper"></i></div>
                         <h3>Silent Voice Nepal</h3>
                         <p>A digital platform I created to share news, educational content, and social awareness material. It is designed to inform and engage the community by providing accurate, useful, and thought-provoking content.</p>
                         <div class="proj-tags"><span>News Platform</span><span>Social Awareness</span></div>
-                        <a href="https://www.facebook.com/silentvoicenepal" target="_blank" rel="noreferrer" class="proj-link mag-btn"><i class="fa-brands fa-facebook"></i> Visit Page</a>
+                        <a href="https://www.facebook.com/silentvoicenepal" target="_blank" rel="noreferrer" class="proj-link"><i class="fa-brands fa-facebook"></i> Visit Page</a>
                     </article>
-                    <article class="glass-card proj-card mag-card" data-anim="fade">
+                    <article class="glass-card proj-card fade-in">
                         <div class="proj-ico"><i class="fa-solid fa-calculator"></i></div>
                         <h3>Calculation Website</h3>
                         <p>A website that provides easy-to-use online calculators for a variety of tasks. This project helped me improve my web development and problem-solving skills by integrating user-friendly features with practical functionality.</p>
                         <div class="proj-tags"><span>Web Tool</span><span>Utility</span></div>
-                        <a href="https://calculator.dhanrajsah.com.np" target="_blank" rel="noreferrer" class="proj-link mag-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Site</a>
+                        <a href="https://calculator.dhanrajsah.com.np" target="_blank" rel="noreferrer" class="proj-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Site</a>
                     </article>
-                    <article class="glass-card proj-card mag-card" data-anim="fade">
+                    <article class="glass-card proj-card fade-in">
                         <div class="proj-ico"><i class="fa-solid fa-square-root-variable"></i></div>
                         <h3>NEB GPA Calculator</h3>
                         <p>A simple and user-friendly web application designed specifically for NEB students to accurately calculate their GPA based on their subject grades. This tool helps students easily track their academic performance.</p>
                         <div class="proj-tags"><span>Calculator</span><span>Education</span></div>
-                        <a href="https://neb.dhanrajsah.com.np" target="_blank" rel="noreferrer" class="proj-link mag-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Site</a>
+                        <a href="https://neb.dhanrajsah.com.np" target="_blank" rel="noreferrer" class="proj-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Site</a>
                     </article>
                 </div>
             </div>
         </section>
 
+        <!-- GALLERY CTA -->
         <section class="sec">
             <div class="container">
-                <div class="glass-card gallery-cta mag-card text-center" data-anim="fade">
+                <div class="glass-card gallery-cta fade-in text-center">
                     <h3><i class="fa-regular fa-images"></i> Explore the Journey</h3>
                     <p>Browse the photo gallery to see visual examples of my brand, community work, and design experiments.</p>
-                    <a href="gallery.html" class="btn btn-primary mag-btn"><span>View Photo Gallery</span><i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="gallery.html" class="btn btn-primary"><span>View Photo Gallery</span><i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
         </section>
 
+        <!-- CONTACT -->
         <section id="contact" class="sec">
             <div class="container">
                 <div class="bento bento-contact">
-                    <div class="glass-card bento-item contact-info mag-card" data-anim="fade">
+                    <div class="glass-card bento-item contact-info fade-in">
                         <span class="sec-badge"><i class="fa-solid fa-envelope-open-text"></i> Contact</span>
-                        <h2 class="sec-heading" data-anim="chars">Let's build something meaningful.</h2>
+                        <h2 class="sec-heading">Let's build something meaningful.</h2>
                         <p>Ready to collaborate, discuss new ideas, or share a project brief. Reach out through email, phone, or social media.</p>
                         <div class="ct-links">
-                            <a href="mailto:dhanrajsah03@gmail.com" class="ct-item mag-btn"><i class="fa-solid fa-paper-plane"></i><span>dhanrajsah03@gmail.com</span></a>
-                            <a href="tel:+9779769738591" class="ct-item mag-btn"><i class="fa-solid fa-phone"></i><span>+977 9769738591</span></a>
+                            <a href="mailto:dhanrajsah03@gmail.com" class="ct-item"><i class="fa-solid fa-paper-plane"></i><span>dhanrajsah03@gmail.com</span></a>
+                            <a href="tel:+9779769738591" class="ct-item"><i class="fa-solid fa-phone"></i><span>+977 9769738591</span></a>
                         </div>
                         <div class="soc-row">
-                            <a href="https://www.facebook.com/dhanrajsah02" target="_blank" rel="noreferrer" class="soc-ico mag-btn" title="Facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                            <a href="https://www.instagram.com/dhanraj.sah00" target="_blank" rel="noreferrer" class="soc-ico mag-btn" title="Instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="https://x.com/dhanrajsah03" target="_blank" rel="noreferrer" class="soc-ico mag-btn" title="X" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-                            <a href="https://www.linkedin.com/in/dhanrajsah" target="_blank" rel="noreferrer" class="soc-ico mag-btn" title="LinkedIn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="https://www.facebook.com/dhanrajsah02" target="_blank" rel="noreferrer" class="soc-ico" title="Facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/dhanraj.sah00" target="_blank" rel="noreferrer" class="soc-ico" title="Instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://x.com/dhanrajsah03" target="_blank" rel="noreferrer" class="soc-ico" title="X (Twitter)" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                            <a href="https://www.linkedin.com/in/dhanrajsah" target="_blank" rel="noreferrer" class="soc-ico" title="LinkedIn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                         </div>
                     </div>
-                    <form id="contactForm" class="glass-card bento-item contact-form mag-card" data-anim="fade" novalidate>
+                    <form id="contactForm" class="glass-card bento-item contact-form fade-in" novalidate>
                         <div class="fm-head"><h3><i class="fa-solid fa-message"></i> Send a Message</h3></div>
                         <label class="fm-field" for="name"><span>Name</span><input type="text" id="name" name="name" placeholder="Your Name" required autocomplete="name"></label>
                         <label class="fm-field" for="email"><span>Email</span><input type="email" id="email" name="email" placeholder="Your Email" required autocomplete="email"></label>
                         <label class="fm-field" for="message"><span>Message</span><textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea></label>
-                        <button type="submit" id="submitBtn" class="btn btn-primary mag-btn"><span>Send Message</span><i class="fa-solid fa-paper-plane"></i></button>
+                        <button type="submit" id="submitBtn" class="btn btn-primary"><span>Send Message</span><i class="fa-solid fa-paper-plane"></i></button>
                     </form>
                 </div>
             </div>
@@ -229,11 +240,13 @@
     </main>
 
     <footer class="footer"><div class="container"><p>&copy; 2026 Dhanraj Sah | All Rights Reserved.</p></div></footer>
-    <button id="backToTop" class="btt mag-btn" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+    <button id="backToTop" class="btt" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
-    <script src="script.js"></script>
+    <!-- Three.js 3D WebGL Library (Lightweight Single Draw Call) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js" defer></script>
+    <script>
+(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="JenFWdopds-G1iaEWp0V9";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+</script>
 </body>
 </html>
