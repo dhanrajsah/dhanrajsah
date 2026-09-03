@@ -144,73 +144,110 @@
         return { init };
     })();
 
-    /* ── 3. Hardware Ghost Cursor (Strict translate3d RAF) ────── */
-    const GhostCursor = (() => {
-        const dot = document.getElementById('gcDot');
-        const ring = document.getElementById('gcRing');
-        const label = document.getElementById('gcLabel');
+    /* ── 3. Ultra-Smooth 3D Aerodynamic Delta-Pointer Cursor ────── */
+    const DeltaCursor = (() => {
+        const cursor = document.getElementById('custom-cursor');
+        const wrapper = cursor ? cursor.querySelector('.cursor-wrapper') : null;
 
-        if (isTouch || !dot || !ring) {
-            if (dot) dot.style.display = 'none';
-            if (ring) ring.style.display = 'none';
+        const isTouch = 'ontouchstart' in window || 
+                        navigator.maxTouchPoints > 0 || 
+                        window.innerWidth <= 768 ||
+                        window.matchMedia('(pointer: coarse)').matches;
+
+        if (isTouch || !cursor || !wrapper) {
+            if (cursor) cursor.style.display = 'none';
             return { init() {} };
         }
 
-        let dotX = -100, dotY = -100;
-        let ringX = -100, ringY = -100;
         let targetX = -100, targetY = -100;
+        let currentX = -100, currentY = -100;
+        let currentDeg = 0;
+        let targetDeg = 0;
+        let isMoving = false;
+        let lastMoveTime = 0;
+        let rafId = null;
+
+        // Snappy yet silky damping
+        const POS_LERP = 0.22;
+        const ANGLE_LERP = 0.16;
+
+        function updateCursor() {
+            const dx = targetX - currentX;
+            const dy = targetY - currentY;
+            const dist = Math.hypot(dx, dy);
+
+            currentX += dx * POS_LERP;
+            currentY += dy * POS_LERP;
+
+            // Dynamically calculate movement trajectory with Math.atan2(dy, dx)
+            if (dist > 0.4) {
+                const rad = Math.atan2(dy, dx);
+                // Convert to degrees and add 90deg because delta arrow naturally points UP
+                targetDeg = (rad * 180 / Math.PI) + 90;
+                lastMoveTime = performance.now();
+                isMoving = true;
+            } else if (performance.now() - lastMoveTime > 350) {
+                isMoving = false;
+            }
+
+            // Shortest-path angular interpolation (prevents 360 wrap-around spins)
+            let diff = (targetDeg - currentDeg) % 360;
+            if (diff < -180) diff += 360;
+            if (diff > 180) diff -= 360;
+            currentDeg += diff * ANGLE_LERP;
+
+            // Aerodynamic velocity stretch & squeeze
+            const speed = Math.min(dist, 45);
+            const stretch = isMoving ? 1 + speed * 0.007 : 1;
+            const squeeze = isMoving ? 1 - speed * 0.003 : 1;
+
+            // Update transform coordinates (16, 14 is the aerodynamic focal center)
+            cursor.style.transform = `translate3d(${currentX - 16}px, ${currentY - 14}px, 0)`;
+            wrapper.style.transform = `rotate(${currentDeg.toFixed(2)}deg) scale(${squeeze.toFixed(3)}, ${stretch.toFixed(3)})`;
+
+            rafId = requestAnimationFrame(updateCursor);
+        }
 
         function init() {
             window.addEventListener('mousemove', e => {
                 targetX = e.clientX;
                 targetY = e.clientY;
+                if (!cursor.classList.contains('is-active')) {
+                    cursor.classList.add('is-active');
+                    currentX = targetX;
+                    currentY = targetY;
+                }
             }, { passive: true });
 
-            function updateCursor() {
-                dotX += (targetX - dotX) * 0.35;
-                dotY += (targetY - dotY) * 0.35;
-                ringX += (targetX - ringX) * 0.15;
-                ringY += (targetY - ringY) * 0.15;
-
-                dot.style.transform = `translate3d(${dotX - 3}px, ${dotY - 3}px, 0)`;
-                ring.style.transform = `translate3d(${ringX - 22}px, ${ringY - 22}px, 0)`;
-
-                requestAnimationFrame(updateCursor);
-            }
-            requestAnimationFrame(updateCursor);
-
-            document.querySelectorAll('a,button,input,textarea,.btn').forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    ring.style.width = '58px';
-                    ring.style.height = '58px';
-                    ring.style.borderColor = 'rgba(124,92,252,0.5)';
-                    dot.style.opacity = '0.4';
-                });
-                el.addEventListener('mouseleave', () => {
-                    ring.style.width = '44px';
-                    ring.style.height = '44px';
-                    ring.style.borderColor = 'rgba(255,255,255,0.25)';
-                    dot.style.opacity = '1';
-                    if (label) label.style.opacity = '0';
-                    ring.classList.remove('pill');
-                });
+            document.addEventListener('mouseleave', () => {
+                cursor.classList.remove('is-active');
             });
 
-            document.querySelectorAll('[data-cursor-text]').forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    if (label) { label.textContent = el.getAttribute('data-cursor-text'); label.style.opacity = '1'; label.style.fontSize = '0.55rem'; }
-                    ring.classList.add('pill');
-                    ring.style.width = '76px';
-                    ring.style.height = '32px';
-                });
-                el.addEventListener('mouseleave', () => {
-                    if (label) label.style.opacity = '0';
-                    ring.classList.remove('pill');
-                    ring.style.width = '44px';
-                    ring.style.height = '44px';
-                });
+            document.addEventListener('mouseenter', () => {
+                cursor.classList.add('is-active');
             });
+
+            window.addEventListener('mousedown', () => {
+                cursor.classList.add('cursor-down');
+            });
+
+            window.addEventListener('mouseup', () => {
+                cursor.classList.remove('cursor-down');
+            });
+
+            // Interactive hover targets
+            const hoverTargets = document.querySelectorAll(
+                'a, button, input, textarea, select, .btn, .nav-link, .proj-link, .proj-card, .stat-card, .ct-item, .soc-ico, .sk-btn, .modal-x'
+            );
+
+            hoverTargets.forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+            });
+
+            rafId = requestAnimationFrame(updateCursor);
         }
+
         return { init };
     })();
 
@@ -308,15 +345,150 @@
         return { init };
     })();
 
+    /* ── 9. Ultra-Smooth 3D Tilt & Depth Engine (60-120 FPS) ── */
+    const CardTilt3D = (() => {
+        function init() {
+            const isMobileDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth <= 768);
+            const cards = document.querySelectorAll('.proj-card, .skill-card, .edu-card, .bento-about .glass-card');
+            if (!cards.length) return;
+
+            // Ensure cards have .tilt-card class and dynamic glare overlay
+            cards.forEach(card => {
+                card.classList.add('tilt-card');
+                if (!card.querySelector('.tilt-glare')) {
+                    const glare = document.createElement('div');
+                    glare.className = 'tilt-glare';
+                    glare.setAttribute('aria-hidden', 'true');
+                    card.appendChild(glare);
+                }
+            });
+
+            // Performance Scroll-Lock: Zero Lag During Active Scrolling
+            let scrollTimer = null;
+            window.addEventListener('scroll', () => {
+                if (!document.body.classList.contains('is-scrolling')) {
+                    document.body.classList.add('is-scrolling');
+                }
+                clearTimeout(scrollTimer);
+                scrollTimer = setTimeout(() => {
+                    document.body.classList.remove('is-scrolling');
+                }, 120);
+            }, { passive: true });
+
+            // ── MOBILE: Pure GSAP ScrollTrigger 3D Entry (0% Mouse Overhead) ──
+            if (isMobileDevice) {
+                if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                    gsap.registerPlugin(ScrollTrigger);
+                    cards.forEach(card => {
+                        gsap.fromTo(card,
+                            {
+                                transform: 'perspective(800px) rotateX(12deg) scale(0.96)',
+                                opacity: 0.75
+                            },
+                            {
+                                transform: 'perspective(800px) rotateX(0deg) scale(1)',
+                                opacity: 1,
+                                duration: 0.75,
+                                ease: 'power2.out',
+                                scrollTrigger: {
+                                    trigger: card,
+                                    start: 'top 90%',
+                                    toggleActions: 'play none none reverse'
+                                }
+                            }
+                        );
+                    });
+                }
+                return; // Completely exit: 0 mousemove listeners attached on mobile!
+            }
+
+            // ── DESKTOP: Hardware-Accelerated Damped 3D Tilt & Parallax Depth ──
+            const MAX_TILT = 10; // degrees
+            const DAMPING = 0.12; // smooth lerp factor
+
+            cards.forEach(card => {
+                let rafId = null;
+                let targetRotX = 0, targetRotY = 0;
+                let currentRotX = 0, currentRotY = 0;
+                let isHovered = false;
+
+                function updateTilt() {
+                    if (document.body.classList.contains('is-scrolling')) {
+                        rafId = requestAnimationFrame(updateTilt);
+                        return;
+                    }
+
+                    // Damped Interpolation (Lerp)
+                    currentRotX += (targetRotX - currentRotX) * DAMPING;
+                    currentRotY += (targetRotY - currentRotY) * DAMPING;
+
+                    card.style.transform = `perspective(1000px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg) translate3d(0, -4px, 0)`;
+
+                    if (isHovered || Math.abs(currentRotX) > 0.05 || Math.abs(currentRotY) > 0.05) {
+                        rafId = requestAnimationFrame(updateTilt);
+                    } else {
+                        // Settle back to natural resting state
+                        card.style.transform = '';
+                        card.classList.remove('is-settling');
+                        rafId = null;
+                    }
+                }
+
+                card.addEventListener('mouseenter', () => {
+                    if (document.body.classList.contains('is-scrolling')) return;
+                    isHovered = true;
+                    card.classList.remove('is-settling');
+                    if (!rafId) rafId = requestAnimationFrame(updateTilt);
+                });
+
+                card.addEventListener('mousemove', e => {
+                    if (document.body.classList.contains('is-scrolling')) return;
+                    const rect = card.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width;   // 0 to 1
+                    const y = (e.clientY - rect.top) / rect.height;  // 0 to 1
+
+                    targetRotX = (0.5 - y) * (MAX_TILT * 2);
+                    targetRotY = (x - 0.5) * (MAX_TILT * 2);
+
+                    // Dynamic Specular Glare & Bento Spotlight Tracking
+                    card.style.setProperty('--glare-x', `${(x * 100).toFixed(1)}%`);
+                    card.style.setProperty('--glare-y', `${(y * 100).toFixed(1)}%`);
+                    card.style.setProperty('--mouse-x', `${(e.clientX - rect.left).toFixed(1)}px`);
+                    card.style.setProperty('--mouse-y', `${(e.clientY - rect.top).toFixed(1)}px`);
+
+                    if (!rafId) rafId = requestAnimationFrame(updateTilt);
+                }, { passive: true });
+
+                card.addEventListener('mouseleave', () => {
+                    isHovered = false;
+                    targetRotX = 0;
+                    targetRotY = 0;
+                    card.classList.add('is-settling');
+                });
+            });
+
+            // Ambient Bento Spotlight for all non-tilt glass cards
+            document.querySelectorAll('.glass-card:not(.tilt-card)').forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    card.style.setProperty('--mouse-x', `${(e.clientX - rect.left).toFixed(1)}px`);
+                    card.style.setProperty('--mouse-y', `${(e.clientY - rect.top).toFixed(1)}px`);
+                }, { passive: true });
+            });
+        }
+        return { init };
+    })();
+
     /* ── Bootstrap ───────────────────────────────────────────── */
     document.addEventListener('DOMContentLoaded', () => {
         Preloader.init();
         ThreeBG.init();
         ScrollReveals.init();
-        GhostCursor.init();
+        DeltaCursor.init();
         Nav.init();
         BTT.init();
         SkillModal.init();
         ContactForm.init();
+        CardTilt3D.init();
     });
 })();
